@@ -1,21 +1,40 @@
 <!doctype html>
-<html>
+<html ng-app="Chromesane">
     <head>        
         <!-- bower:css -->
         <!-- endbower -->
 
         <!-- build:css styles/main.css -->
         <link href="styles/main.css" rel="stylesheet">
+        <link rel="stylesheet" href="styles/bootstrap-lumen.scss">
         <!-- endbuild -->
 
         <!-- bower:js -->
+        <script src="/bower_components/angular/angular.js"></script>
+        <script src="/bower_components/angular-bootstrap/ui-bootstrap.js"></script>
+        <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/tab.js"></script>
         <!-- endbower -->
 
         <!-- build:js scripts/popup.js -->
         <script src="scripts/popup.js"></script>
+        <script src="scripts/app.js"></script>
         <!-- endbuild -->
     </head>
     <body>
-      <h1>'Allo, 'Allo!</h1>
+
+        <h2 >Chromesane</h2>
+            <form ng-submit="submit()" ng-controller="SubmitCtrl">
+                <div id="inputField">
+                    <input type="text" class="form-control" placeholder="URL" ng-model="resourceURL">
+                </div>
+      
+                <input type="text" class="form-control" placeholder="Name" ng-model="resourceName">
+                <div id="submitBtn">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+
+                </div>
+
+            </form>
     </body>
+    
 </html>

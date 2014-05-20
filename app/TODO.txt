@@ -1,0 +1,19 @@
+TODO
+
+
+#OnExt
+
+	Legge til input fields
+
+
+#InCode
+
+	Integrere angularjs
+
+
+#Other
+
+
+#Problems
+
+	

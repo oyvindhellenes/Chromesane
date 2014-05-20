@@ -1,9 +1,15 @@
 'use strict';
 
-chrome.runtime.onInstalled.addListener(function (details) {
-    console.log('previousVersion', details.previousVersion);
+chrome.runtime.onInstalled.addListener(function(details) {
+	console.log('previousVersion', details.previousVersion);
+
 });
 
-chrome.browserAction.setBadgeText({text: '\'Allo'});
-
 console.log('\'Allo \'Allo! Event Page for Browser Action');
+
+chrome.tabs.query({
+	currentWindow: true,
+	active: true
+}, function(tabs) {
+	console.log('Funker det?' + tabs.url);
+});
