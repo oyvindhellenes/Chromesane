@@ -1,33 +1,66 @@
 'use strict';
 
 angular
-	.module('Chromesane', ['ui.bootstrap']);
+	.module('Chromesane', ['ui.bootstrap', 'ui.router', 'ngCookies', 'ngResource'])
+	  .constant('config', {
+      baseUrl: 'http://localhost:1337/'
+    })
+	.config(['$stateProvider', '$urlRouterProvider','$httpProvider',
+  function($stateProvider, $urlRouterProvider, $httpProvider) {
 
-angular.module('Chromesane')
-	.controller('SubmitCtrl', function($scope, $log, $http) {
+    $urlRouterProvider.otherwise('/login');
+    
+    $stateProvider
+        .state('submit', {
+        url: '/submit',
+        templateUrl: 'popup.html',
+        controller: 'SubmitCtrl'
+        })
+        .state('login', {
+            url: '/login',
+            templateUrl: 'popup.html',
+            controller: 'AuthCtrl'
+        })
 
-		var name = '';
-		var url = '';
-		chrome.tabs.query({
-			currentWindow: true,
-			active: true
-		}, function(tabs) {
-			$scope.resourceURL = tabs[0].url;
-			$log.info('Funker det?');
-		});
+    //$httpProvider.interceptors.push('httpInterceptor');
+  }
+])
+  .run(['$rootScope', '$injector','$location','authService','$state', '$cookieStore', 'userService', 
+  	function (api, $rootScope, $injector, $location, authService, $state, $cookieStore, userService) {
 
-		$scope.submit = function() {
-			name = $scope.resourceName;
-			url = $scope.resourceURL;
-			$log.info(url);
-			$log.info(name);
-			var url = 'http://localhost:8888/Corsane/web/app_dev.php/api/resources?name=' + name + '&url=' + url;
-			$http.post(url).success(function(data) {
+    // Injects the authorization header on each api call
+    // $injector.get("$http").defaults.transformRequest = function(data, headersGetter) {
+    //     if (userService.isLoggedIn()) {
+    //         headersGetter()['Authorization'] = 'Bearer ' + $rootScope.oauth.access_token;
+    //     }
 
-			}).error(function(error) {
-				$log.info('It doesnt work!'+ error);
-			});
-			window.close();
-		};
+    //     if (data) {
+    //         return data;
+    //     }
+    // };
 
-	});
+    // If already logged in
+    // if ($cookieStore.get('oauth')) {
+    //     $rootScope.isLoggedIn = true;
+    //     console.log('Already logged in. Setting oauth from cookie');
+    //     console.log($cookieStore.get('oauth'));
+    //     $rootScope.oauth = $cookieStore.get('oauth');
+
+    //     if ($rootScope.oauth.user) {
+    //         userService.user($rootScope.oauth.user[0].id).success(function (resp){
+    //             console.log('Setting user from userService.user() ');
+    //             $rootScope.user = resp;
+
+    //         }).error(function () {
+    //             console.log('Is already logged in but unable to get userdata');
+    //         });
+            
+    //     }
+    //     else {
+    //         $cookieStore.remove('oauth');
+    //         $rootScope.isLoggedIn = false;
+    //     }
+    // };
+
+}]);
+
