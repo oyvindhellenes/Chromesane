@@ -14,12 +14,12 @@ angular
         .state('submit', {
         url: '/submit',
         templateUrl: 'popup.html',
-        controller: 'SubmitCtrl'
+        controller: 'HomeCtrl'
         })
         .state('login', {
             url: '/login',
             templateUrl: 'popup.html',
-            controller: 'AuthCtrl'
+            controller: 'HomeCtrl'
         })
 
     $httpProvider.interceptors.push('httpInterceptor');

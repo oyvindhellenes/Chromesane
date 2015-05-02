@@ -28,11 +28,11 @@
         <script src="scripts/services/http.js"></script>
         <!-- endbuild -->
     </head>
-    <body>
+    <body ng-controller="HomeCtrl">
 
         <h2 >Chromesane</h2>
             <div ng-if="$root.user">
-                <form ng-submit="submit()" ng-controller="SubmitCtrl" >
+                <form ng-submit="submit()" >
                     {{$root.user.fullName}}
                     <div id="inputField">
                         <input type="text" class="form-control" placeholder="URL" ng-model="resourceURL">
@@ -51,7 +51,7 @@
             </div>
 
             <div ng-if="!$root.user">
-                <form ng-submit="login($parent.loginCredentials)" class="simple-form" ng-controller="AuthCtrl">
+                <form ng-submit="login($parent.loginCredentials)" class="simple-form">
                     <input class="form-control" type="text" data-ng-model="$parent.loginCredentials.email" placeholder="Email" >
                     <br>
                     <input class="form-control pure-input-1-3" type="password" data-ng-model="$parent.loginCredentials.password" placeholder="Password">
