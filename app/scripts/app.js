@@ -22,45 +22,45 @@ angular
             controller: 'AuthCtrl'
         })
 
-    //$httpProvider.interceptors.push('httpInterceptor');
+    $httpProvider.interceptors.push('httpInterceptor');
   }
 ])
   .run(['$rootScope', '$injector','$location','authService','$state', '$cookieStore', 'userService', 
-  	function (api, $rootScope, $injector, $location, authService, $state, $cookieStore, userService) {
+  	function ($rootScope, $injector, $location, authService, $state, $cookieStore, userService) {
 
     // Injects the authorization header on each api call
-    // $injector.get("$http").defaults.transformRequest = function(data, headersGetter) {
-    //     if (userService.isLoggedIn()) {
-    //         headersGetter()['Authorization'] = 'Bearer ' + $rootScope.oauth.access_token;
-    //     }
+    $injector.get("$http").defaults.transformRequest = function(data, headersGetter) {
+        if (userService.isLoggedIn()) {
+            headersGetter()['Authorization'] = 'Bearer ' + $rootScope.oauth.access_token;
+        }
 
-    //     if (data) {
-    //         return data;
-    //     }
-    // };
+        if (data) {
+            return data;
+        }
+    };
 
     // If already logged in
-    // if ($cookieStore.get('oauth')) {
-    //     $rootScope.isLoggedIn = true;
-    //     console.log('Already logged in. Setting oauth from cookie');
-    //     console.log($cookieStore.get('oauth'));
-    //     $rootScope.oauth = $cookieStore.get('oauth');
+    if ($cookieStore.get('oauth')) {
+        $rootScope.isLoggedIn = true;
+        console.log('Already logged in. Setting oauth from cookie');
+        console.log($cookieStore.get('oauth'));
+        $rootScope.oauth = $cookieStore.get('oauth');
 
-    //     if ($rootScope.oauth.user) {
-    //         userService.user($rootScope.oauth.user[0].id).success(function (resp){
-    //             console.log('Setting user from userService.user() ');
-    //             $rootScope.user = resp;
+        if ($rootScope.oauth.user) {
+            userService.user($rootScope.oauth.user[0].id).success(function (resp){
+                console.log('Setting user from userService.user() ');
+                $rootScope.user = resp;
 
-    //         }).error(function () {
-    //             console.log('Is already logged in but unable to get userdata');
-    //         });
+            }).error(function () {
+                console.log('Is already logged in but unable to get userdata');
+            });
             
-    //     }
-    //     else {
-    //         $cookieStore.remove('oauth');
-    //         $rootScope.isLoggedIn = false;
-    //     }
-    // };
+        }
+        else {
+            $cookieStore.remove('oauth');
+            $rootScope.isLoggedIn = false;
+        }
+    };
 
 }]);
 

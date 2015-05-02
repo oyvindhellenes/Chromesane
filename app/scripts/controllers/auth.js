@@ -8,8 +8,8 @@
 
 
 angular.module('Chromesane')
-	.controller('AuthCtrl',['$scope', '$log', '$http', '$rootScope', 'userService', 'authService', 
-		function($scope, $log, $http, $rootScope, userService, authService) {
+	.controller('AuthCtrl',['$scope', '$log', '$http', '$rootScope', 'userService', 'authService', '$cookieStore',
+		function($scope, $log, $http, $rootScope, userService, authService, $cookieStore) {
 
         $scope.loginCredentials = {};
         $scope.registerCredentials = {};
