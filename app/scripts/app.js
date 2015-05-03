@@ -50,6 +50,7 @@ angular
             userService.user($rootScope.oauth.user[0].id).success(function (resp){
                 console.log('Setting user from userService.user() ');
                 $rootScope.user = resp;
+                $rootScope.collection.value = $rootScope.user.collections[0]
 
             }).error(function () {
                 console.log('Is already logged in but unable to get userdata');
