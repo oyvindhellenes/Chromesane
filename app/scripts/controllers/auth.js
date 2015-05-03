@@ -24,6 +24,10 @@ angular.module('Chromesane')
             value: ""
         }
 
+        $rootScope.loading = {
+            value: false
+        }
+
         chrome.tabs.query({
         	currentWindow: true,
         	active: true
@@ -33,16 +37,14 @@ angular.module('Chromesane')
         });
 
         $scope.submit = function() {
+            $rootScope.loading.value = true;
+            
+            submitService.post($scope.resource.url, $scope.resource.name).then(function(data){
+                submitService.add_resource($rootScope.collection.value, data);
+                window.close();
+            })
+
         	
-            $log.info('1' + $scope.resource.url);
-            $log.info('2' + $scope.resource.name);
-            $log.info('3' + $rootScope.collection.value);
-
-         //    submitService.post($rootScope.resource.url, $rootScope.resource.name).then(function(data){
-         //        submitService.add_resource($rootScope.resource.collection.id, data.id);
-         //    })
-
-        	// window.close();
         };
 
 		$scope.login = function(credentials){
