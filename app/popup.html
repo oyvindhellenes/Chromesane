@@ -6,28 +6,10 @@
 
         <!-- build:css styles/main.css -->
         <link href="styles/main.css" rel="stylesheet">
-        <link rel="stylesheet" href="styles/bootstrap-lumen.scss">
         <!-- endbuild -->
+        <link rel="stylesheet" href="styles/bootstrap-lumen.css">
 
-        <!-- bower:js -->
-        <script src="/bower_components/angular/angular.js"></script>
-        <script src="/bower_components/angular-bootstrap/ui-bootstrap.js"></script>
-        <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/tab.js"></script>
-        <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-        <script src="/bower_components/angular-cookies/angular-cookies.js"></script>
-        <script src="bower_components/angular-resource/angular-resource.js"></script>
-        <!-- endbower -->
 
-        <!-- build:js scripts/popup.js -->
-        <script src="scripts/popup.js"></script>
-        <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/submit.js"></script>
-        <script src="scripts/controllers/auth.js"></script>
-        <script src="scripts/services/auth.js"></script>
-        <script src="scripts/services/user.js"></script>
-        <script src="scripts/services/http.js"></script>
-        <script src="scripts/services/submit.js"></script>
-        <!-- endbuild -->
     </head>
     <body ng-controller="HomeCtrl">
 
@@ -70,6 +52,25 @@
                 </form>
             </div>
         </div>
+
+        <!-- build:js scripts/vendor.js -->
+        <!-- bower:js -->
+        <!-- endbower -->
+        <!-- endbuild -->
+        <script src="bower_components/angular/angular.js"></script>
+        <script src="bower_components/angular-bootstrap/ui-bootstrap.js"></script>
+        <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/tab.js"></script>
+        <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+        <script src="bower_components/angular-resource/angular-resource.js"></script>
+
+        <!-- build:js scripts/popup.js -->
+        <script src="scripts/background.js"></script>
+        <script src="scripts/auth.controller.js"></script>
+        <script src="scripts/auth.js"></script>
+        <script src="scripts/user.js"></script>
+        <script src="scripts/http.js"></script>
+        <script src="scripts/submit.js"></script>
+        <!-- endbuild -->
 
     </body>
     

@@ -1,32 +1,32 @@
 'use strict';
 
 angular
-	.module('Chromesane', ['ui.bootstrap', 'ui.router', 'ngCookies', 'ngResource'])
-	  .constant('config', {
-      baseUrl: 'http://localhost:1337/'
+	.module('Chromesane', ['ui.bootstrap', 'ngCookies', 'ngResource'])
+	.constant('config', {
+      baseUrl: 'http://staging.corsane.com/'
     })
-	.config(['$stateProvider', '$urlRouterProvider','$httpProvider',
-  function($stateProvider, $urlRouterProvider, $httpProvider) {
+	.config(['$httpProvider',
+  function($httpProvider) {
 
-    $urlRouterProvider.otherwise('/login');
+    // $urlRouterProvider.otherwise('/login');
     
-    $stateProvider
-        .state('submit', {
-        url: '/submit',
-        templateUrl: 'popup.html',
-        controller: 'HomeCtrl'
-        })
-        .state('login', {
-            url: '/login',
-            templateUrl: 'popup.html',
-            controller: 'HomeCtrl'
-        })
+    // $stateProvider
+    //     .state('submit', {
+    //     url: '/submit',
+    //     templateUrl: 'popup.html',
+    //     controller: 'HomeCtrl'
+    //     })
+    //     .state('login', {
+    //         url: '/login',
+    //         templateUrl: 'popup.html',
+    //         controller: 'HomeCtrl'
+    //     })
 
     $httpProvider.interceptors.push('httpInterceptor');
   }
 ])
-  .run(['$rootScope', '$injector','$location','authService','$state', '$cookieStore', 'userService', 
-  	function ($rootScope, $injector, $location, authService, $state, $cookieStore, userService) {
+  .run(['$rootScope', '$injector','$location','authService', '$cookieStore', 'userService', 
+  	function ($rootScope, $injector, $location, authService, $cookieStore, userService) {
 
     // Injects the authorization header on each api call
     $injector.get("$http").defaults.transformRequest = function(data, headersGetter) {
