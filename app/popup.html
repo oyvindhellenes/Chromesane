@@ -46,8 +46,8 @@
                     <input class="form-control pure-input-1-3" type="password" data-ng-model="$parent.loginCredentials.password" placeholder="Password">
                     <br>
                     <button class="btn btn-primary" type="submit">Login</button>
-
-                    <div id="status"></div>
+                    <br>
+                    <alert type="danger" ng-repeat="validationError in validationErrors">Error: {{validationError}}</alert>
 
                 </form>
             </div>
