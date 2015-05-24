@@ -36,7 +36,7 @@ angular
     // Injects the authorization header on each api call
     $injector.get("$http").defaults.transformRequest = function(data, headersGetter) {
         if (userService.isLoggedIn()) {
-            headersGetter()['Authorization'] = 'Bearer ' + $rootScope.oauth.access_token;
+            headersGetter()['Authorization'] = 'Bearer ' + $rootScope.oauth.token;
         }
 
         if (data) {

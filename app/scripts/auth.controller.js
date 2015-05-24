@@ -39,7 +39,7 @@ angular.module('Chromesane')
         $scope.submit = function() {
             $rootScope.loading.value = true;
             
-            submitService.post($scope.resource.url, $scope.resource.name).then(function(data){
+            submitService.post($scope.resource.url, $scope.resource.name, $rootScope.collection.value).then(function(data){
                 submitService.add_resource($rootScope.collection.value, data);
                 window.close();
             })
@@ -74,7 +74,6 @@ angular.module('Chromesane')
                             $log.info('Not working');
                         });
                         
-                        $state.go('home');
                     }
                 };
 
