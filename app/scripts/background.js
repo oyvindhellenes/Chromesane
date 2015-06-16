@@ -8,7 +8,7 @@ chrome.runtime.onInstalled.addListener(function(details) {
 angular
 	.module('Chromesane', ['ui.bootstrap', 'ngCookies', 'ngResource'])
 	.constant('config', {
-      baseUrl: 'http://localhost:1337/'
+      baseUrl: 'http://corsane.com/'
     })
 	.config(['$httpProvider',
   function($httpProvider) {

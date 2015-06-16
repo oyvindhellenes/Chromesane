@@ -10,12 +10,14 @@ angular.module('Chromesane')
       return {
         login: function(credentials) {
             var loginString = config.baseUrl
-                + 'auth/login?';
+                + 'auth/login';
 
-            loginString += 'username=' + credentials.email;
-            loginString += '&password=' + credentials.password;
-
-            return $http.get(loginString);
+            return $http({
+                method: 'POST',
+                url: loginString,
+                data: $.param({password: credentials.password, username: credentials.email}),
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            })
 
         },
         logout: function(){

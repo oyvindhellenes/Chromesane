@@ -22,7 +22,7 @@
           <div class="double-bounce2"></div>
         </div>
         <div id="container" ng-if="!$root.loading.value">
-            <div ng-if="$root.user" id="submit">
+            <div ng-if="$root.isLoggedIn" id="submit">
                 <form ng-submit="submit()" >
                     <div id="inputField">
                         <input type="text" class="form-control" placeholder="URL" ng-model="resource.url">
@@ -32,7 +32,7 @@
                     <br>
                     <select class="form-control" ng-options="item.name for item in $root.user.collections" ng-model="$root.collection.value">
                     </select>
-                    <br>
+                    <br ng-if="$root.collection.value.name == '+ New Collection'">
                     <input class="form-control" type="text" ng-if="$root.collection.value.name == '+ New Collection'" placeholder="Name of new collection" ng-model="$root.collection.newname">
                     <br>
                     <div id="submitBtn">
@@ -43,7 +43,7 @@
                 </form>
             </div>
 
-            <div ng-if="!$root.user" id="login">
+            <div ng-if="!$root.isLoggedIn" id="login">
                 <form ng-submit="login($parent.loginCredentials)" class="simple-form">
                     <input class="form-control" type="text" data-ng-model="$parent.loginCredentials.email" placeholder="Email" >
                     <br>
@@ -68,6 +68,7 @@
         <!-- bower:js -->
         <!-- endbower -->
         <!-- endbuild -->
+        <script src="bower_components/jquery/dist/jquery.js"></script>
         <script src="bower_components/angular/angular.js"></script>
         <script src="bower_components/angular-bootstrap/ui-bootstrap.js"></script>
         <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>

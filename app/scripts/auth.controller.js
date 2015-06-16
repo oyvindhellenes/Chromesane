@@ -78,6 +78,8 @@ angular.module('Chromesane')
                         .success(function (resp){
                             console.log('resp' + angular.toJson(resp));
                             $rootScope.user = resp;
+                            $rootScope.collection.value = $rootScope.user.collections[0];
+                            $rootScope.user.collections.push({name: '+ New Collection'});
 
                         })
                         .error(function (resp){
