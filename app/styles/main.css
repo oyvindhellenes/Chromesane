@@ -44,6 +44,9 @@ margin-top: 25%;
 margin-left: 38%;
 }
 
+a {
+  color: orange !important;
+}
 
 .spinner {
 	width: 70px;

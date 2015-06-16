@@ -8,7 +8,7 @@ chrome.runtime.onInstalled.addListener(function(details) {
 angular
 	.module('Chromesane', ['ui.bootstrap', 'ngCookies', 'ngResource'])
 	.constant('config', {
-      baseUrl: 'http://staging.corsane.com/'
+      baseUrl: 'http://localhost:1337/'
     })
 	.config(['$httpProvider',
   function($httpProvider) {
@@ -55,7 +55,8 @@ angular
             userService.user($rootScope.oauth.user[0].id).success(function (resp){
                 console.log('Setting user from userService.user() ');
                 $rootScope.user = resp;
-                $rootScope.collection.value = $rootScope.user.collections[0]
+                $rootScope.collection.value = $rootScope.user.collections[0];
+                $rootScope.user.collections.push({name: '+ New Collection'});
 
             }).error(function () {
                 console.log('Is already logged in but unable to get userdata');

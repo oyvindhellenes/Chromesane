@@ -21,7 +21,8 @@ angular.module('Chromesane')
         }
 
         $rootScope.collection = {
-            value: ""
+            value: "",
+            newname: ""
         }
 
         $rootScope.loading = {
@@ -40,7 +41,16 @@ angular.module('Chromesane')
             $rootScope.loading.value = true;
             
             submitService.post($scope.resource.url, $scope.resource.name, $rootScope.collection.value).then(function(data){
-                submitService.add_resource($rootScope.collection.value, data);
+                if ($rootScope.collection.newname) {
+                    submitService.new_collection($rootScope.collection.newname).then(function(result){
+                        submitService.add_resource(result, data);
+                        submitService.star(result);
+                    })
+                }
+                else {
+                    submitService.add_resource($rootScope.collection.value, data);
+
+                }
                 window.close();
             })
 

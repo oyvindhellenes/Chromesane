@@ -1,6 +1,6 @@
 {
-    "name": "__MSG_appName__",
-    "version": "0.0.28",
+    "name": "Corsane",
+    "version": "0.0.31",
     "manifest_version": 2,
     "description": "__MSG_appDescription__",
     "icons": {
@@ -19,12 +19,12 @@
             "19": "images/corsane.png",
             "38": "images/corsane.png"
         },
-        "default_title": "Chromesane",
+        "default_title": "Corsane",
         "default_popup": "popup.html"
     },
     "options_page": "options.html",
     "omnibox": {
-        "keyword": "Chromesane"
+        "keyword": "Corsane"
     },
     "permissions": [
         "tabs",
