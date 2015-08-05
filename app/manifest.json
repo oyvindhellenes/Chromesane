@@ -1,6 +1,6 @@
 {
     "name": "Corsane",
-    "version": "0.0.31",
+    "version": "0.0.32",
     "manifest_version": 2,
     "description": "__MSG_appDescription__",
     "icons": {
